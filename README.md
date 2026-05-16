@@ -101,7 +101,8 @@ User Schema
 
 
 
-API Endpoints Documentation
+**API Endpoints Documentation**
+
 Authentication Routes (/api/auth)
 Method	Endpoint	Description	Access
 POST	/signup	Register new user account	Public
@@ -116,6 +117,7 @@ GET	/:id	Get specific project details	Private
 PUT	/:id	Update project information	Admin Only
 DELETE	/:id	Delete a project	Admin Only
 POST	/:id/members	Add member to project	Admin Only
+
 Task Routes (/api/tasks)
 Method	Endpoint	Description	Access
 GET	/	Retrieve all accessible tasks	Private
@@ -124,7 +126,8 @@ GET	/project/:projectId	Get tasks by project	Private
 PUT	/:id	Update task details	Private
 DELETE	/:id	Delete a task	Admin Only
 GET	/dashboard/stats	Get dashboard statistics	Private
-Installation & Setup Guide
+
+**Installation & Setup Guide**
 Prerequisites
 Ensure the following software is installed on your system:
 
@@ -171,7 +174,7 @@ Frontend: http://localhost:3000
 
 Backend API: http://localhost:5000
 
-Deployment Guide
+**Deployment Guide**
 Deploying to Railway (Production)
 Create a Railway Account
 
@@ -239,7 +242,8 @@ User Login
 curl -X POST https://your-backend-url.railway.app/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"test123"}'
-Frontend Testing
+
+**Frontend Testing**
 Test Case	Expected Result
 User Registration	New account created successfully
 User Login	Redirect to dashboard
@@ -249,7 +253,7 @@ Update Task Status	Status changes immediately
 Admin Access	Can see all projects and tasks
 Member Access	Only sees assigned items
 
-Project Structure
+**Project Structure**
 text
 Task_Management_Application/
 │
@@ -289,7 +293,10 @@ Task_Management_Application/
 │
 ├── .gitignore                         # Git ignore rules
 └── README.md                          # Project documentation
-Troubleshooting Guide
+
+
+**Troubleshooting Guide**
+
 Common Issues and Solutions
 Issue	Possible Cause	Solution
 Build fails on Railway	Incorrect root directory	Set Root Directory to Back End or Front end
@@ -306,7 +313,7 @@ railway logs --service backend
  Check frontend build status
 railway logs --service frontend
 
-Test API endpoint
+**Test API endpoint**
 curl -I https://your-backend-url.railway.app/api/auth/me
 Future Enhancement Roadmap
 Priority	Feature	Expected Release
@@ -319,7 +326,7 @@ Low	Calendar view for tasks	Q3 2025
 Low	Mobile native application	Q4 2025
 
 
-Support & Contact
+**Support & Contact**
 Role	Name	Contact
 Developer	MD NAYEEM	GitHub: @Nayeemm2003
 Project Repository	-	[GitHub Link](https://github.com/Nayeemm2003/Task_Management_Application)
