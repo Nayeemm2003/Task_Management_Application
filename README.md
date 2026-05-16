@@ -4,7 +4,7 @@
 
 The **Team Task Manager** is a comprehensive, full-stack web application designed to streamline project and task management within organizations. The system provides role-based access control, enabling administrators to manage projects and team members while allowing regular members to track and update their assigned tasks efficiently.
 
-**Live Application URL:** [Insert your deployed frontend URL here]
+**Live Application URL:** [front-end-production-7bbe.up.railway.app]
 
 ---
 
@@ -322,5 +322,5 @@ Low	Mobile native application	Q4 2025
 Support & Contact
 Role	Name	Contact
 Developer	MD NAYEEM	GitHub: @Nayeemm2003
-Project Repository	-	GitHub Link
+Project Repository	-	[GitHub Link](https://github.com/Nayeemm2003/Task_Management_Application)
 
