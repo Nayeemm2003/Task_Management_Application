@@ -27,32 +27,50 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    try {
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
-      setToken(res.data.token);
-      setUser(res.data.user);
-      localStorage.setItem('token', res.data.token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-      return { success: true };
-    } catch (error) {
-      return { success: false, error: error.response?.data?.error || 'Login failed' };
-    }
-  };
+  try {
+    console.log('Logging in to:', `${API_URL}/api/auth/login`);
+    const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+    const { token, user } = res.data;
+    
+    // Store token
+    setToken(token);
+    setUser(user);
+    localStorage.setItem('token', token);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    
+    console.log('Login successful!', user);
+    return { success: true, user };  // ← Return user data
+  } catch (error) {
+    console.error('Login error:', error);
+    return { 
+      success: false, 
+      error: error.response?.data?.error || 'Login failed' 
+    };
+  }
+};
 
   const signup = async (name, email, password, role) => {
-    try {
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      const res = await axios.post(`${API_URL}/api/auth/signup`, { name, email, password, role });
-      setToken(res.data.token);
-      setUser(res.data.user);
-      localStorage.setItem('token', res.data.token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-      return { success: true };
-    } catch (error) {
-      return { success: false, error: error.response?.data?.error || 'Signup failed' };
-    }
-  };
+  try {
+    console.log('Signing up to:', `${API_URL}/api/auth/signup`);
+    const res = await axios.post(`${API_URL}/api/auth/signup`, { name, email, password, role });
+    const { token, user } = res.data;
+    
+    // Store token
+    setToken(token);
+    setUser(user);
+    localStorage.setItem('token', token);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    
+    console.log('Signup successful!', user);
+    return { success: true, user };  // ← Return user data
+  } catch (error) {
+    console.error('Signup error:', error);
+    return { 
+      success: false, 
+      error: error.response?.data?.error || 'Signup failed' 
+    };
+  }
+};
 
   const logout = () => {
     setUser(null);

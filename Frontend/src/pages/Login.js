@@ -13,17 +13,20 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const result = await login(email, password);
-    if (result.success) {
-      toast.success('Welcome back! 🎉');
-      navigate('/');
-    } else {
-      toast.error(result.error);
-    }
-    setLoading(false);
-  };
+  e.preventDefault();
+  setLoading(true);
+  const result = await login(email, password);
+  if (result.success) {
+    toast.success('Welcome back! 🎉');
+    // Force navigation to dashboard
+    window.location.href = '/';
+    // OR use navigate
+    // navigate('/');
+  } else {
+    toast.error(result.error);
+  }
+  setLoading(false);
+};
 
   return (
     <div className="min-h-screen gradient-bg flex items-center justify-center p-4">

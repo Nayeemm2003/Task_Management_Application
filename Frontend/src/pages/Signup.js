@@ -17,17 +17,20 @@ function Signup() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const result = await signup(formData.name, formData.email, formData.password, formData.role);
-    if (result.success) {
-      toast.success('Account created successfully! 🎉');
-      navigate('/');
-    } else {
-      toast.error(result.error);
-    }
-    setLoading(false);
-  };
+  e.preventDefault();
+  setLoading(true);
+  const result = await signup(formData.name, formData.email, formData.password, formData.role);
+  if (result.success) {
+    toast.success('Account created successfully! 🎉');
+    // Force navigation to dashboard
+    window.location.href = '/';
+    // OR use navigate
+    // navigate('/');
+  } else {
+    toast.error(result.error);
+  }
+  setLoading(false);
+};
 
   return (
     <div className="min-h-screen gradient-bg flex items-center justify-center p-4">
