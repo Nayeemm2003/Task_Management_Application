@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/taskmanager', {
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGO_URL || 'mongodb://localhost:27017/taskmanager', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
