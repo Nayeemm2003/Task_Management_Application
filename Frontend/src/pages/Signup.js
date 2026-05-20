@@ -22,10 +22,7 @@ function Signup() {
   const result = await signup(formData.name, formData.email, formData.password, formData.role);
   if (result.success) {
     toast.success('Account created successfully! 🎉');
-    // Force navigation to dashboard
-    window.location.href = '/';
-    // OR use navigate
-    // navigate('/');
+    navigate('/');
   } else {
     toast.error(result.error);
   }

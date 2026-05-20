@@ -18,10 +18,7 @@ function Login() {
   const result = await login(email, password);
   if (result.success) {
     toast.success('Welcome back! 🎉');
-    // Force navigation to dashboard
-    window.location.href = '/';
-    // OR use navigate
-    // navigate('/');
+    navigate('/');
   } else {
     toast.error(result.error);
   }
