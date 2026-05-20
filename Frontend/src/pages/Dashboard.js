@@ -26,12 +26,14 @@ function Dashboard() {
     fetchDashboardData();
   }, []);
 
+  const API_URL = process.env.REACT_APP_API_URL || 'https://back-end-production-fcde.up.railway.app';
+
   const fetchDashboardData = async () => {
     try {
-      const statsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/tasks/dashboard/stats`);
+      const statsRes = await axios.get(`${API_URL}/api/tasks/dashboard/stats`);
       setStats(statsRes.data);
       
-      const tasksRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`);
+      const tasksRes = await axios.get(`${API_URL}/api/tasks`);
       setRecentTasks(tasksRes.data.slice(0, 6));
     } catch (error) {
       console.error('Error fetching dashboard data:', error);

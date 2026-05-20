@@ -28,10 +28,11 @@ function Tasks() {
       fetchUsers();
     }
   }, []);
+  const API_URL = process.env.REACT_APP_API_URL || 'https://back-end-production-fcde.up.railway.app';
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`);
+      const res = await axios.get(`${API_URL}/api/tasks`);
       setTasks(res.data);
     } catch (error) {
       toast.error('Failed to fetch tasks');
@@ -40,7 +41,7 @@ function Tasks() {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/projects`);
+      const res = await axios.get(`${API_URL}/api/projects`);
       setProjects(res.data);
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -49,7 +50,7 @@ function Tasks() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/users`);
+      const res = await axios.get(`${API_URL}/api/auth/users`);
       setUsers(res.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -59,7 +60,7 @@ function Tasks() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, formData);
+      await axios.post(`${API_URL}/api/tasks`, formData);
       toast.success('Task created successfully!');
       setShowModal(false);
       setFormData({
@@ -78,7 +79,7 @@ function Tasks() {
 
   const updateTaskStatus = async (id, status) => {
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`, { status });
+      await axios.put(`${API_URL}/api/tasks/${id}`, { status });
       toast.success('Task status updated');
       fetchTasks();
     } catch (error) {
@@ -89,7 +90,7 @@ function Tasks() {
   const deleteTask = async (id) => {
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`);
+        await axios.delete(`${API_URL}/api/tasks/${id}`);
         toast.success('Task deleted successfully');
         fetchTasks();
       } catch (error) {

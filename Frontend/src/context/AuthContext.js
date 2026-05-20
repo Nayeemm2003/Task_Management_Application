@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const API_URL = 'https://back-end-production-fcde.up.railway.app';
+  const API_URL = process.env.REACT_APP_API_URL || 'https://back-end-production-fcde.up.railway.app';
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
       const res = await axios.get(`${API_URL}/api/auth/me`);
       setUser(res.data.user);
     } catch (error) {

@@ -14,10 +14,11 @@ function Projects() {
   useEffect(() => {
     fetchProjects();
   }, []);
+  const API_URL = process.env.REACT_APP_API_URL || 'https://back-end-production-fcde.up.railway.app';
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/projects`);
+      const res = await axios.get(`${API_URL}/api/projects`);
       setProjects(res.data);
     } catch (error) {
       toast.error('Failed to fetch projects');
@@ -27,7 +28,7 @@ function Projects() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/projects`, formData);
+      await axios.post(`${API_URL}/api/projects`, formData);
       toast.success('Project created successfully!');
       setShowModal(false);
       setFormData({ name: '', description: '' });
@@ -40,7 +41,7 @@ function Projects() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this project?')) {
       try {
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/projects/${id}`);
+        await axios.delete(`${API_URL}/api/projects/${id}`);
         toast.success('Project deleted successfully');
         fetchProjects();
       } catch (error) {
