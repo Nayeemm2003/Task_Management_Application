@@ -8,12 +8,15 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [loading, setLoading] = useState(true);
 
   const API_URL = process.env.REACT_APP_API_URL || 'https://back-end-production-fcde.up.railway.app';
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       fetchUser();
+    } else {
+      setLoading(false);
     }
   }, [token]);
 
@@ -22,7 +25,10 @@ export const AuthProvider = ({ children }) => {
       const res = await axios.get(`${API_URL}/api/auth/me`);
       setUser(res.data.user);
     } catch (error) {
+      console.error('Fetch user failed:', error);
       logout();
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,7 +86,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );
